@@ -4,7 +4,6 @@ An Application based on Python and LeptonAI!
 import json
 import io
 import os
-
 import urllib.request
 
 from PIL import Image as PIL_Image
@@ -16,8 +15,9 @@ from toga.style.pack import COLUMN, ROW
 
 class AISDK:
     def __init__(self):
-        api_token = os.environ.get("LEPTON_API_TOKEN")
-        self.url = "https://lq87wh9y-sdxl-deploy.bjz.edr.lepton.ai/run"
+        # Android 端没法用环境变量，这里只能将 TOKEN 写死在代码中
+        api_token = "xxxxxxxxxxxx"
+        self.url = "https://xxx-sdxl-deploy.bjz.edr.lepton.ai/run"
         self.headers = {
             "Content-Type": "application/json",
             "accept": "image/png",
