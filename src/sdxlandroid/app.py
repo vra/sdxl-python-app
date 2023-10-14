@@ -1,10 +1,12 @@
 """
 An Application based on Python and LeptonAI!
 """
+import json
 import io
 import os
 
-import requests
+import urllib.request
+
 from PIL import Image as PIL_Image
 
 import toga
@@ -25,9 +27,11 @@ class AISDK:
     def process(self, prompt, img_save_path):
         print("ai processing begin...")
         data = {"num_inference_steps": 25, "prompt": prompt, "seed": 42}
-        response = requests.post(self.url, headers=self.headers, json=data)
+        req = urllib.request.Request(self.url, headers=self.headers, data=json.dumps(data).encode('utf-8'))
+        response = urllib.request.urlopen(req)
+        res = response.read()
 
-        image_data = io.BytesIO(response.content)
+        image_data = io.BytesIO(res)
         image = PIL_Image.open(image_data)
         image.save(img_save_path)
         print("ai processing done")
