@@ -22,9 +22,11 @@ test_sources = [
 ]
 
 requires = [
+"pillow",
 ]
 test_requires = [
     "pytest",
+
 ]
 
 [tool.briefcase.app.sdxlandroid.macOS]
